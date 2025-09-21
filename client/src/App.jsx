@@ -1,44 +1,36 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./App.css";
+import { fetchBlogs, addBlog } from "./blogApi";
 
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [name, setName] = useState("");
   const [blog, setBlog] = useState("");
 
-  const apiURL = "http://localhost:3000/api/blogs";
-
-  const fetchBlogs = async () => {
-    try {
-      const res = await axios.get(apiURL + "/get");
-      console.log("API Response:", res.data);
-
-      // If your backend sends { blogs: [...] }
-      setBlogs(res.data.data || []);
-
-      // If backend sends array directly, just do:
-      // setBlogs(res.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  useEffect(() => {
+    const loadBlogs = async () => {
+      try {
+        const data = await fetchBlogs();
+        setBlogs(data || []);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    loadBlogs();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(apiURL + "/add", { name, blog });
+      await addBlog({ name, blog });
       setName("");
       setBlog("");
-      fetchBlogs(); // Reload Blogs
+      const data = await fetchBlogs(); // reload blogs
+      setBlogs(data || []);
     } catch (err) {
       console.error(err);
     }
   };
-
-  useEffect(() => {
-    fetchBlogs();
-  }, []);
 
   return (
     <div style={{ margin: "20px" }}>
