@@ -6,6 +6,8 @@ function App() {
   const [blogs, setBlogs] = useState([]);
   const [name, setName] = useState("");
   const [blog, setBlog] = useState("");
+  const editIcon = "/edit.svg";
+  const deleteIcon = "/delete.svg";
 
   useEffect(() => {
     const loadBlogs = async () => {
@@ -32,10 +34,13 @@ function App() {
     }
   };
 
+  const handleEdit = async (e) => {};
+
+  const handleDelete = async (e) => {};
+
   return (
     <div style={{ margin: "20px" }}>
       <h1>My Blog</h1>
-
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -68,6 +73,15 @@ function App() {
               padding: "10px",
             }}
           >
+            <div>
+              <button onClick={handleEdit}>
+                <img src="/assets/edit.svg" alt="Edit" />
+              </button>
+              <button onClick={handleDelete}>
+                <img src="/assets/delete.svg" alt="Delete" />
+              </button>
+            </div>
+
             <h3>{b.name}</h3>
             <p>{b.blog}</p>
             <small>{new Date(b.createdAt).toLocaleString()}</small>
