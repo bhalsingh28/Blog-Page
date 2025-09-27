@@ -9,8 +9,6 @@ export const fetchBlogs = async () => {
   return res.data.data;
 };
 
-// Get single blog by ID
-
 // Add a new blog
 
 export const addBlog = async (newData) => {
