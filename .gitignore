@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+
+# env files
+.env
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# build folders
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor folders
+.vscode/
+.idea/
+
+# temporary files
+tmp/
+temp/
+
+# coverage
+coverage/
+
+# package lock optional
+# package-lock.json
+
+# uploads (optional)
+uploads/
+
+# dotenv variants
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
